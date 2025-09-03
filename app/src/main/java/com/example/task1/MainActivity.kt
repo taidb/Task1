@@ -5,13 +5,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 class MainActivity : AppCompatActivity() {
 
 
     private val c: String? = "Buổi 1"
     private val d: Boolean = true
     private val e: Long = 19
-    private val f: Double = 6.78
     private val k: Float = 7f
 
     private val pi: Double = 3.14
@@ -23,125 +23,252 @@ class MainActivity : AppCompatActivity() {
     private val z: Double = y.toDouble()
 
     // Collection
-    private val numbers = listOf(1, 2, 3, 4, 5)
     private val mutableNumbers = mutableListOf(1, 2, 3)
+
     private val set = setOf(1, 2, 2, 3, 4)
     private val map = mapOf("name" to "Tai", "age" to 22)
     private val nums = listOf(1, 2, 3, 4, 5)
+
+    val students = listOf(
+        Student(1, "An", 80),
+        Student(2, "An", 45),
+        Student(3, "Chi", 100),
+        Student(4, "Dũng", 30),
+        Student(5, "Hà", 75),
+        Student(6, "Hùng", 49),
+        Student(7, "Lan", 90),
+        Student(8, "Minh", 55),
+        Student(9, "Nga", 20),
+        Student(10, "Tú", 70)
+    )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        println("1.in danh sách sinh viên")
+        printStudentDoWhile()
+        println("2.chuyển thành kiểu id,Student")
+        saveStudentToMap()
 
-        age += 1
-        println("Tuổi sau khi +1: $age")
-        println("Pi = $pi, y = $y, z = $z")
+        println("4.in xếp loại sinh viên")
+        ratingStudent()
+        println("5.in điểm trung bình")
+        printAvgScore()
+        println("6.Tìm kiếm sinh viên tên An")
+        sreachStudentByName("An")
+        println("7.in Danh sách sinh viên đậu ,rớt")
+        printFailedAndPassStudent()
+        println("8.in xếp loại sinh viên")
+        ratingStudent()
+        println("9.in sinh viên có điểm thấp nhất, điểm cao nhất")
+        printHighestAndLowestScore()
+        println("10.Lọc sinh viên có lớn hơn 85")
+        filterStudent()
+        println("11.Số sinh viên trượt")
+        countStudent()
+        println("12.Kiểm tra sinh viên nào có điểm 100")
+        if (checkAnyStudent()) println("có sinh viên  có điểm 100") else println("Không có sinh viên có điểm 100")
+        println("13.Kiểm tra tất cả sinh viên có điểm lớn hơn 30")
+        if (checkAllStudent()) println("Tất cả sinh viên có điểm lớn hơn 30") else println(
+            "Không tất cả sinh viên có điểm lớn hơn 30"
+        )
+        println("14.Sắp xếp sinh viên theo điểm tăng dần")
+        sortAscendingStudent()
+        println("15.Sắp xếp sinh viên theo điểm giảm dần")
+        sortDescendingStudent()
+        println("16.In  sinh viene đầu tiên")
+        printFirstStudent()
+        println("17.In  sinh viên cuối cùng")
+        printLastStudent()
+        println("18.Chuyển tên sinh viên in hoa")
+        transferToUppercase()
+        println("19.Chuyển kiểu dữ liệu")
+        chageStyle()
+        println("20. In sinh viên có tên là An điểm cao hơn 50")
+        printStudentdemand()
+        println("21. In sinh viên có tên là An hoặc có điểm bằng 100")
+        printStudentdemand2()
+        println("22.Tổng điểm 2 sinh viên đầu tiên")
+        sumScoreTwoStudentFirst()
+        println("23.Tích điểm 2 sinh viên đầu tiên")
+        multiplicationScoreTwoStudentFirst()
+        println("24.In danh sách sinh viên ở id lẻ")
+        printStudentOdd()
+        println("\n")
 
-        // --------- For Loop ----------
-        for (i in 1..5) println("i = $i")
-        for (i in 1 until 5) println(" i = $i")
 
 
-        var n = 5
-        while (n > 0) {
-            println("While: n = $n")
-            n--
+    }
+
+    fun printStudentOdd() {
+        students.forEach {
+            if (it.id % 2 != 0) {
+                println("Danh sách sinh viên lẻ : $it")
+            }
+        }
+    }
+
+    fun printStudentdemand() {
+        students.forEach {
+            if (it.name == "An" && it.score >= 50) {
+                println("Danh sách sinh viên : $it")
+            }
+        }
+    }
+
+    fun printStudentdemand2() {
+        students.forEach {
+            if (it.name == "An" || it.score >= 100) {
+                println("Danh sách sinh viên : $it")
+            }
+        }
+    }
+
+    fun printStudent() {
+        for (i in 0..students.size) {
+            println("${i + 1} ${students[i]}")
+        }
+    }
+
+    fun saveStudentToMap() {
+        var mapStudents = mutableMapOf<Int, Student>()
+        students.forEach {
+            mapStudents[it.id] = it
+        }
+        println("Map sinh viên: $mapStudents")
+    }
+
+    fun sreachStudentByName(name: String) {
+        students.forEach {
+            if (it.name == name) {
+                println("Sinh viên có tên $name là $it")
+            }
+        }
+    }
+
+    fun printFailedAndPassStudent() {
+
+        var i = 0
+        while (i < students.size) {
+            if (students[i].score >= 50) {
+                println("Tên ${students[i].name} id ${students[i].id} điểm ${students[i].score} : Đậu")
+            } else {
+                println("Tên ${students[i].name} id ${students[i].id} điểm ${students[i].score} : Rớt")
+            }
+            i++
         }
 
+    }
+
+    fun ratingStudent() {
+        for (i in students) {
+            when (i.score) {
+                in 90..100 -> println("Tên ${i.name} id ${i.id} điểm ${i.score} : Xuất sắc")
+                in 80..89 -> println("Tên ${i.name} id ${i.id} điểm ${i.score} : Giỏi")
+                in 70..79 -> println("Tên ${i.name} id ${i.id} điểm ${i.score} : Khá")
+                in 50..69 -> println("Tên ${i.name} id ${i.id} điểm ${i.score} : Trung bình")
+                else -> println("Tên ${i.name} id ${i.id} điểm ${i.score} : Yếu")
+            }
+
+        }
+    }
+
+    fun printAvgScore() {
+        var sum = 0
+        var d = 0
+        for (i in students) {
+            sum += i.score
+            d++
+        }
+        val avg = sum / d
+        println("Điểm trung bình 1 là $avg")
+        students.sumOf { it.score }// tính tổng điểm sinh viên
+        val avg1 = students.sumOf { it.score } / students.size
+        val totalScore = students.map { it.score }.reduce { acc, i -> acc + i }
+        val avg2 = totalScore.toDouble() / students.size
+    }
+
+    fun printHighestAndLowestScore() {
+        // in sinh viên có điểm thấp nhất
+        println("Điểm thấp nhất là ${students.minOf { it.score }} của ${students.minBy { it.score }.name}}")
+        //in sinh viên có điểm cao nhất
+        println("Điểm cao nhất là ${students.maxOf { it.score }} của ${students.maxBy { it.score }.name}}")
+    }
+
+    fun filterStudent() {
+        println(
+            "Danh sách sinh viển có điểm lớn hơn 85 : ${students.filter { it.score >= 85 }} của ${
+                students.filter { it.score >= 85 }.map { it.name }
+            }"
+        )
+    }
+
+    fun countStudent() {
+        //Đếm số sinh viên trượt
+        println("Số sinh viên đõ là ${students.count { it.score >= 50 }} Số sinh viên trượt là ${students.count { it.score <= 50 }}")
+    }
+
+    fun checkAnyStudent(): Boolean {
+        //kiểm tra có sinh viên nào có điểm 100
+        return students.any { it.score >= 100 }
+    }
+
+    fun checkAllStudent(): Boolean {
+        return students.all { it.score >= 30 }
+    }
+
+    // kieem tra  tất cả sinh viên có điểm lớn hơn 30
+    fun sortAscendingStudent() {
+        //Sắp xếp sinh viên theo điểm tăng dần
+        println("Sắp xếp sinh viên theo điểm tăng dần : ${students.sortedBy { it.score }}}")
+    }
+
+    fun sortDescendingStudent() {
+        //Sắp xếp sinh viên theo điểm giảm dần
+        println("Sắp xếp sinh viên theo điểm giảm dần : ${students.sortedByDescending { it.score }}}")
+    }
+
+    fun printFirstStudent() {
+        println("Sinh viên đầu tiên là :${students.first()}")
+        println("Sinh viên đầu tiên là :${students.take(1)}")
+    }
+
+    fun printLastStudent() {
+        println("Sinh viên cuối cùng là :${students.takeLast(1)}")
+
+        println("Sinh viên cuối cùng là :${students.last()}")
+    }
+
+    fun printStudentAt() {
+        println("Sinh viên thứ 2 là :${students.elementAt(1)}")
+    }
+
+    fun transferToUppercase() {
+        println("Danh sách sinh viên : ${students.map { it.name.uppercase() }}")
+    }
+
+    fun chageStyle() {
+        println("Ép điểm sinh viên sang Double : ${students.map { it.score.toDouble() }}")
+        println("Ép id sinh viên sang String : ${students.map { it.score.toString() }}")
+    }
+
+    fun sumScoreTwoStudentFirst() {
+        println("Tổng điểm của hai sinh viên đầu tiên là : ${students[0].score + students[1].score}")
+    }
+
+    fun multiplicationScoreTwoStudentFirst() {
+        println("Tích điểm của hai sinh viên đầu tiên là : ${students[0].score * students[1].score}")
+    }
+
+   fun printStudentDoWhile() {
+        var i = 0
         do {
-            println("Chạy 1 lần ")
-        } while (n > 0)
-
-
-        mutableNumbers.add(4)
-        println("Set = $set")
-        println("name :${map["name"]}")
-
-        println("map() x2 = ${nums.map { it * 2 }}")
-        println("filter() chẵn = ${nums.filter { it % 2 == 0 }}")
-        println("any() có số > 4 không? ${nums.any { it > 4 }}")
-        println("all() tất cả > 0 không? ${nums.all { it > 0 }}")
-        println("count() số lượng chẵn = ${nums.count { it % 2 == 0 }}")
-        println("reduce() tổng = ${nums.reduce { acc, i -> acc + i }}")
-        nums.forEach { println("forEach: $it") }
-        println("first = ${nums.first()}, last = ${nums.last()}")
-        println("find > 3 = ${nums.find { it > 3 }}")
-
-
-        tinhtong()
-        tinhhieu()
-        tinhtich()
-        tinhthuong()
-        tinhdu()
-        tinh5()
-        tinh6(12)
-        inchuoi("Tài")
-        checkDay(2)
-        checkScore(85)
-
-    }
-
-
-    private fun tinhtong(a: Int = 5, b: Float = 6f) {
-        val c = b.toInt()
-        println("Tổng = ${a + c}")
-    }
-
-    private fun tinhhieu(a: Int = 5, b: Int = 6) {
-        println("Hiệu = ${b - a}")
-    }
-
-    private fun tinhtich(a: Int = 5, b: Int = 6) {
-        println("Tích = ${a * b}")
-    }
-
-    private fun tinhthuong(a: Int = 10, b: Int = 5) {
-        println("Thương = ${a / b}")
-    }
-
-    private fun tinhdu(a: Int = 7, b: Int = 5) {
-        println("Dư = ${a % b}")
-    }
-
-
-    private fun tinh5(a: Int = 7, b: Int = 5) {
-        if (a > b) {
-            println("a > b")
-        } else {
-            println("b >= a")
-        }
-    }
-
-    private fun tinh6(a: Int = 7, b: Int = 5) {
-        if (a % 3 == 0 && a % 2 == 0) {
-            println("a chia hết cho 6")
-        } else {
-            println("a KHÔNG chia hết cho 6")
-        }
-    }
-
-
-    private fun inchuoi(name: String = "Tai") {
-        println("Hello $name")
-    }
-
-
-    private fun checkDay(day: Int) {
-        when (day) {
-            1 -> println("Thứ hai")
-            2 -> println("Thứ ba")
-            3 -> println("Thứ tư")
-            else -> println("Ngày khác")
-        }
-    }
-    private fun checkScore(score: Int) {
-        val grade = when (score) {
-            in 90..100 -> "Xuất sắc"
-            in 75..89 -> "Giỏi"
-            in 50..74 -> "Trung bình"
-            else -> "Yếu"
-        }
-        println("Điểm: $score => Xếp loại: $grade")
-    }
+            println("Sinh viên thứ $i là : ${students[i]}")
+            i++
+        } while (i < students.size)
+   }
 }
+
+
