@@ -20,12 +20,12 @@ fun dataType() {
 
 }
 
-// kiểu khai báo có thể suy luận ra kiểu dữ liệu và hắng sô
-fun automaticAndConstant() {
+//biến và hằng số
+fun variableAndConstant() {
     var name = "Tài"
     var age = 20
     var gender = true
-    var pi = 3.14
+    val pi = 3.14
     println("Tên: $name")
     println("Tuổi: $age")
     println("Giới tính: $gender")
@@ -104,7 +104,7 @@ fun kotlinFunction() {
 
 fun main() {
     dataType()
-    automaticAndConstant()
+    variableAndConstant()
     operator()
     dataTypeCoercion()
     kotlinFunction()

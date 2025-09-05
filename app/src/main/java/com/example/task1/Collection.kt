@@ -1,12 +1,10 @@
 package com.example.task1
 
-//lọc danh sách
+//Hàm trong Collection
 fun FunOfCollection() {
     var list = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
     var list1 = mutableListOf(1, 10, 3, 11, 5, 12, 7, 15, 9)
-
-
-
+    var list2 = mutableListOf("Xin", "chào", "bạn")
     println("Số phần tử : ${list.size}")
     println("Phần tử chẵn : ${list.filter { it % 2 == 0 }}")
     println("Tổng các phần tử : ${list.sumOf { it }}")
@@ -15,6 +13,7 @@ fun FunOfCollection() {
             list.filter { it % 2 != 0 }.reduce { acc, i -> acc + i }
         }"
     )// reduce gộp tất cả các phần tử thành 1 giá trị duy nhất lấy phân tử đầu tiên làm giá trị ban đầu
+    println(list2.reduce { acc, item -> "$acc,$item"})
     println("Phần tử lớn nhất ${list.max()}")
     println("Phần tử nhỏ nhất ${list.min()}")
     println("Phần tử đầu tiên ${list.first()}")
@@ -49,6 +48,7 @@ fun FunOfCollection() {
             ) { acc, i -> acc + i }
         }"
     )
+    println(list2.fold("Chào bạn"){ acc, item -> "$acc,$item"})
     println("lấy 1 số bất kì : ${list.random()}")
     println("Bỏ qua 2 phần tử đầu tiên : ${list.drop(2)}")
     println("Tính giá tị trung bih : ${list.average()}")
@@ -65,6 +65,7 @@ fun FunOfCollection() {
 
 }
 
+//List
 fun syntaxList() {
     var list = listOf(2, 3, 4)
     var number = mutableListOf(1, 2, 3)
@@ -76,6 +77,7 @@ fun syntaxList() {
 
 }
 
+//Map
 fun syntaxMap() {
     var map = mutableMapOf<String, Int>()
     var map1 = mapOf("Iphone" to 1, "Sumsung" to 2, "Oppo" to 3)
@@ -89,8 +91,9 @@ fun syntaxMap() {
     println("map.entries : ${map1.entries}")
     println("${map.containsKey("Iphone")}")
     println("${map.containsValue(1)}")
-
 }
+
+//Set
 fun syntaxSet() {
     var set= mutableSetOf(1,2,3,4,5,6,1,5,2)
     var set1= setOf(1,2,3,4,5)
