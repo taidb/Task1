@@ -35,6 +35,7 @@ fun forflower() {
     println("Danh sách hoa:")
     listFlower.forEach { flower -> print(flower + " ") }
     listFlower.forEach { println(it) }
+    listFlower.forEachIndexed{index,flower-> println("$index:$flower") }
     println()
     println("Danh sách hoa:")
     for (i in listFlower.indices) {
@@ -56,6 +57,7 @@ fun forflower() {
     for (i in 10 downTo 1) {
         println(i)
     }
+
 }
 
 
