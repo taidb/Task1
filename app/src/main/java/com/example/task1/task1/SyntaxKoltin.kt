@@ -1,4 +1,4 @@
-package com.example.task1
+package com.example.task1.task1
 
 //kiểu dữ liệu
 fun dataType() {
@@ -78,15 +78,37 @@ fun dataTypeCoercion() {
     var c = a.toInt()
     var d = a.toDouble()
     var e = a.toFloat()
+    var k: Int = 2
+    var b: Byte = k.toByte()
+    var f: Float = k.toFloat()
+    var g: Double = k.toDouble()
+    var h: Short = k.toShort()
+    var l: Long = k.toLong()
+// Ép kiểu an toàn (safe cast)
+    val anyValue: Any = "Hello"
+    val stringValue = anyValue as? String
+
+    println(stringValue)
+    println("l: $l")
     println("a: $a")
     println("c: $c")
     println("d: $d")
     println("e: $e")
+    println("f: $f")
+    println("g: $g")
+    println("h: $h")
+    println("b: $b")
 
 }
 
-//hàm có sự dụng trong chuỗi kotlin
+//Chuỗi và hàm có sự dụng trong chuỗi kotlin
 fun kotlinFunction() {
+    val multiLineString = """
+    Chuỗi
+    nhiều dòng
+    trong Kotlin
+""".trimIndent()
+
     var name = "Đặng Bá Tài"
     println("Tên tôi là $name")
     println("Lấy kí tự đầu tiên: ${name.first()}")
@@ -97,6 +119,8 @@ fun kotlinFunction() {
     println("In hoa tất cả :${name.uppercase()}")
     println("Chuyển veef kí tự thường : ${name.lowercase()}")
     println("lấy kí tự tại vị trí ${name.elementAt(1)}")
+    println("Có kí tự t trong chuỗi không : ${name.contains("t")}")
+    println("Đổi kis tự này sang kí tự khác : ${name.replace("Tài", "Khánh")}")
     println("lấy kí tự tại vị trí ${name[1]}")
     println("Số kí tự trong chuỗi: ${name.length}")
 //....

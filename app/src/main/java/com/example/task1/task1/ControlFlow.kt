@@ -1,6 +1,6 @@
-package com.example.task1
+package com.example.task1.task1
 
-//if else
+//if else thông thường
 fun conditional() {
     var a = 6
     var b = 7
@@ -13,8 +13,19 @@ fun conditional() {
     }
 }
 
+//if else như biểu thức trả về giá trị
+fun conditional1(): Int {
+    var a = 6
+    var b = 7
+    var max = if (a > b) {
+      return  a
+    } else {
+       return b
+    }
+}
+
 //when
-fun whenTest() {
+fun whenExample() {
     var a = "thứ hai"
     println()
     when (a) {
@@ -25,7 +36,7 @@ fun whenTest() {
 }
 
 //for
-fun forflower() {
+fun demonForLoop() {
     var listFlower = listOf("rose", "tulip", "lily")
     println("Danh sách hoa:")
     for (flower in listFlower) {
@@ -109,10 +120,11 @@ fun continueTest() {
 }
 
 fun main() {
-    forflower()
+    demonForLoop()
     conditional()
+    println("So sánh a và b : ${conditional1()}")
     whileFlower()
-    whenTest()
+    whenExample()
     dowhileFlower()
     breakTest()
     continueTest()

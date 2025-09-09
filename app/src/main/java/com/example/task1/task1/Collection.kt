@@ -1,19 +1,22 @@
-package com.example.task1
+package com.example.task1.task1
+
+import java.util.Hashtable
 
 //Hàm trong Collection
-fun FunOfCollection() {
+fun demonstrateCollectionFunctions() {
     var list = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
     var list1 = mutableListOf(1, 10, 3, 11, 5, 12, 7, 15, 9)
     var list2 = mutableListOf("Xin", "chào", "bạn")
     println("Số phần tử : ${list.size}")
     println("Phần tử chẵn : ${list.filter { it % 2 == 0 }}")
+    println("lọc các chữ cái bắt đầu bằng chữ n : ${list2.filter { it.endsWith("n") }}")
     println("Tổng các phần tử : ${list.sumOf { it }}")
     println(
         "Tổng các phần tử lẻ : ${
             list.filter { it % 2 != 0 }.reduce { acc, i -> acc + i }
         }"
     )// reduce gộp tất cả các phần tử thành 1 giá trị duy nhất lấy phân tử đầu tiên làm giá trị ban đầu
-    println(list2.reduce { acc, item -> "$acc,$item"})
+    println(list2.reduce { acc, item -> "$acc,$item" })
     println("Phần tử lớn nhất ${list.max()}")
     println("Phần tử nhỏ nhất ${list.min()}")
     println("Phần tử đầu tiên ${list.first()}")
@@ -48,9 +51,10 @@ fun FunOfCollection() {
             ) { acc, i -> acc + i }
         }"
     )
-    println(list2.fold("Chào bạn"){ acc, item -> "$acc,$item"})
+    println(list2.fold("Chào bạn") { acc, item -> "$acc,$item" })
     println("lấy 1 số bất kì : ${list.random()}")
     println("Bỏ qua 2 phần tử đầu tiên : ${list.drop(2)}")
+    println("Chia list thành các list con : ${list.chunked(3)}")
     println("Tính giá tị trung bih : ${list.average()}")
     println("Nhóm các phần từ cùng 1 nhóm chỉ định trong {}: ${list.groupBy { it > 5 }}")
     println(
@@ -80,7 +84,17 @@ fun syntaxList() {
 //Map
 fun syntaxMap() {
     var map = mutableMapOf<String, Int>()
+    map.put("Iphone", 1)
+    map.put("Sumsung", 2)
+    map.put("Oppo", 3)
+    map.remove("Iphone")
+    println(map)
+
     var map1 = mapOf("Iphone" to 1, "Sumsung" to 2, "Oppo" to 3)
+    var map3 =linkedMapOf("Iphone" to 1, "Sumsung" to 2, "Oppo" to 3) // duy trì thứ tự chèn vào của các phần tử
+    map3["Bphone"]=4
+    println(map3.entries)
+
     for ((key, value) in map1) {
         println("$key : $value")
 
@@ -95,18 +109,45 @@ fun syntaxMap() {
 
 //Set
 fun syntaxSet() {
-    var set= mutableSetOf(1,2,3,4,5,6,1,5,2)
-    var set1= setOf(1,2,3,4,5)
+    var set = mutableSetOf(1, 2, 3, 4, 5, 6, 1, 5, 2)
+    var set1 = setOf(1, 2, 3, 4, 5)
     set.add(6)
     set.remove(2)
     println(set)
 
 }
 
+fun syntaxHash() {
+    // hashmap cos thể chứa key ,value null , không đảm bảo thứ tự
+    var hashMap = HashMap<Int, String>()
+    var hashMap2= hashMapOf(null to null, "two" to 2, "three" to 3)
+
+    hashMap.put(1, "Tài")
+    hashMap.put(2, "Bình")
+    hashMap.put(3, "Duy")
+    println(hashMap)
+
+    //hashset không chứa các phần tử lặp lại , không đảm bảo thứ tự
+    var hashSet = HashSet<String>()
+    var fruits= hashSetOf("apple", "banana", "Orange")
+    hashSet.add("Tài")
+    hashSet.add("Bình")
+    hashSet.add("Duy")
+    println(hashSet)
+
+    // hashtable ko thể chứa key ,value null có thể sử dụng trong đa luồng nhưng n chạy chậm hown hashmap
+    var hashTable = Hashtable<Int, String>()
+    hashTable.put(1, "Tài")
+    hashTable.put(2, "Bình")
+    hashTable.put(3, "Duy")
+    println(hashTable)
+}
+
 fun main() {
-    FunOfCollection()
+    demonstrateCollectionFunctions()
     syntaxList()
     syntaxSet()
     syntaxMap()
+    syntaxHash()
 
 }
