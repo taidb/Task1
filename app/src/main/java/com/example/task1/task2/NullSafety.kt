@@ -1,33 +1,33 @@
 package com.example.task1.task2
 
 fun main(){
-    //Nullable
+    //Nullable: Ví dụ nhập tuổi từ form, có thể để trống
     var age :Int? = 23
     println(age)
     var nullable :String?=null
     println("Nullable: $nullable")
 
-    //Non-nullable
+    //Non-nullable: dữ liệu chắc chắn có (ví dụ: tên luôn có)
     val name :String = "Tài"
-    println(name.length)
+    println("Tên app: $name - số ký tự: ${name.length}")
 
-    //Elvis Operator (?:)
-    val score :Double? = null
-   val printlnScore:Any = score ?:"Điểm hợp lệ"
-   println(printlnScore)
+    // Elvis Operator (?:) - dùng khi dữ liệu có thể null và cần giá trị thay thế
+    val score: Double? = null
+    val displayScore: Any = score ?: "Chưa có điểm thi"
+    println("Điểm thi: $displayScore")
 
-    //Safe Call (?.)
-    var specialized :String? = "CNTT"
-    println("Độ dài :$specialized?.length")
+    // Safe Call (?.) - tránh crash khi null
+    var specialized: String? = "Công nghệ thông tin"
+    println("Tên ngành: $specialized - độ dài: ${specialized?.length ?: 0}")
 
-    // Not-null Assertion (!!)
+    // Not-null Assertion (!!) - chỉ dùng khi chắc chắn dữ liệu không null
     val schooll :String ="Trường GTVT"
     println(schooll!!.length)
 
-    //as: là toán tử ép kiểu
-    val anyValue: Any = "Hello"
+    // as? - Ép kiểu an toàn: dùng khi dữ liệu có thể là nhiều loại
+    val anyValue: Any = "Hello World"
     val str = anyValue as? String
-    println(str?.uppercase())
+    println("Giá trị chuỗi in hoa: ${str?.uppercase() ?: "Không phải String"}")
 }
 
 

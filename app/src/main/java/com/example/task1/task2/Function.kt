@@ -1,51 +1,8 @@
 package com.example.task1.task2
 
-//Extension Function
-fun String.reverseString(): String {
-    return this.reversed()
-}
-
-fun String.capitalizeFirst(): String {
-    return this[0].uppercase() + this.substring(1)
-}
-
-fun String.lengthString(): Int {
-    return this.length
-}
-
-fun MutableList<Int>.swap(index1: Int, index2: Int) {
-    var temp = this[index1]
-    this[index1] = this[index2]
-    this[index2] = temp
-}
-
-//khai báo phần mở rộng của 1 lớp bên trong lớp khác
-class Host(var hostname: String) {
-    fun printHostname() {
-        print(hostname)
-    }
-}
-
-class Connection(var host: Host, var port: Int) {
-    fun printPort() {
-        print(port)
-    }
-
-    fun Host.printConnectionString() {
-        printHostname()
-        print(":")
-        printPort()
-    }
-
-    fun connect() {
-        host.printConnectionString()
-    }
-}
-
-//Hàm một dòng
-fun printMess() = println("Xin chao mọi ngươi")
-
-fun isPrime(n: Int): Boolean = if (n < 2) false else (2 until n).all { n % it != 0 }
+import com.example.task1.task2.oop.util.Connection
+import com.example.task1.task2.oop.util.Host
+import java.math.BigDecimal
 
 //hàm thông thường có trả về giá trị
 fun isValidAge(age: Int): Boolean {
@@ -66,7 +23,7 @@ fun printNames(names: List<String>) {
 //hàm cục bộ : chỉ được gọi hoặc truy cập bên trong hàm chứa nó
 fun calculateAndPrintResult(data: List<Int>) {
     var sum = 0
-    fun calculateOddtotalSum(number: List<Int>): Int {
+    fun calculateOddTotalSum(number: List<Int>): Int {
         for (num in number) {
             if (num % 2 != 0) {
                 sum += num
@@ -74,7 +31,7 @@ fun calculateAndPrintResult(data: List<Int>) {
         }
         return sum
     }
-    calculateOddtotalSum(data)
+    calculateOddTotalSum(data)
     println("Tổng các số lẻ là: $sum")
 }
 
@@ -95,8 +52,8 @@ fun factorial(n: Int): Long {
 }
 
 //Hàm sự dụng Varargs : hàm có thể nhận được nhiều tham số , bản chất của varargs chính là arrays
-fun sum(index1: Int, index2: Int, vararg numbers: Int): Int {
-    var sum = index1 + index2
+fun sum(a: Int, b: Int, vararg numbers: Int): Int {
+    var sum = a + b
     for (number in numbers) {
         sum += number
     }
@@ -105,79 +62,8 @@ fun sum(index1: Int, index2: Int, vararg numbers: Int): Int {
 
 data class User(var name: String, var age: Int)
 
-//Scope Function
-fun scopeFunction() {
-
-    //let: dùng khi muốn biến đổi giá trị hoặc thực hiện thao tác an toàn với null
-    var user = "Tài"
-    var length = user?.let {
-        println("Tên là $it")
-        println(it.reversed())
-        it.length
-    }
-    println("Độ dài: $length")
-
-    //apply : dùng để caaus hình lại đối tượng
-    var updateUser = User("Tài", 23).apply {
-        name = "Bình"
-        age = 22
-    }
-    println(updateUser)
-
-    //run : Dùng khi muốn thực hiện một khối lệnh trên đối tượng và trả về kết quả
-    var result = User("Tài", 23).run {
-        println("Tên : $name, Tuổi : $age")
-        age + 1
-    }
-    println("Kết quả run :$result")
-
-    //with :truyền đối tượng làm tham số
-    var user1 = User("Tài", 23)
-    val withResult = with(user1) {
-        println("Tên : $name, Tuổi : $age")
-        age + 2
-    }
-    println("Kết quả with: $withResult")
-
-    //also : dùng để thực hiện cac tác dụng phụ mà không thay đổi đối tượng
-    var user2 = User("Bình", 22)
-    var user3 = user2.also {
-        println("Tên: ${it.name}, Tuổi: ${it.age}")
-    }
-    println(user3)
-
-}
-
-//Hàm với generic
-fun <T> printList(list: List<T>) {
-    for (item in list) {
-        println(item)
-    }
-}
-
-//anonymous function: không có tên củ thể gọi giống giá trị 1 biến
-val greet1 = fun(name: String): String {
-    return "Hello, $name!"
-}
-
-//Higher-order function : là hàm có thể nhâ 1 hàm khac làm đối số
-fun isOdd(x: Int) = x % 2 != 0
-
-//lambda
-val greet: () -> Unit = { println("Xin chào") }
-fun operator(a: Int, b: Int, operation: (Int, Int) -> (Int)): Int {
-    return operation(a, b)
-}
-
-//Default Parameter
-fun greet(name: String = "Tài", age: Int = 23, hometown: String = "Nghệ An") {
-    println("Xin chào $name, $age tuổi! ,$hometown ")
-}
-
-// Named Argument
-fun createUser(name: String, age: Int, hometown: String) {
-    println("Tên: $name, Tuổi: $age, Quê quán: $hometown")
-}
+//Đánh dấu mã sau khi hoàn thành :TODO
+fun calcTaxes(): BigDecimal = TODO("Waiting for feedback from accounting")
 
 //function Initializer Blocks
 class Person1(name: String, val age: Int) {
@@ -193,43 +79,29 @@ class Person1(name: String, val age: Int) {
     }
 }
 
+//Hàm với generic
+fun <T> printList(list: List<T>) {
+    for (item in list) {
+        println(item)
+    }
+}
+
+//Hàm một dòng
+fun printMess() = println("Xin chao mọi ngươi")
+
+fun isPrime(n: Int): Boolean = if (n < 2) false else (2 until n).all { n % it != 0 }
+
+fun theAnswer() = 42
+
 fun main() {
-
-    //Extension Function
-    var name: String = "dặng Bá Tài"
-    println("In chuỗi đảo ngược : ${name.reverseString()}")
-    println("Số phần tử: ${name.lengthString()}")
-    println("In hoa chữ cái đầu tiên : ${name.capitalizeFirst()}")
-    var list1 = mutableListOf(3, 6)
-    list1.swap(0, 1)
-    println(list1)
-
-    var connection = Connection(Host("google.com"), 80)
-    connection.connect()
-
-    //Default Parameter
-    greet()
-    greet("Tài")
-    greet("Nam", 22)
-
-    //Named Argument
-    createUser("Tài", 23, "Nghệ An")
-    createUser(hometown = "Ninh Bình", name = "Bình", age = 22)
-
-    //Hàm thông thường không trả về giá trị
+    //Hàm thông thường
     var list = listOf("Tài", "Bình", "Duy")
     printNames(list)
+    println("Tuổi có hợp lệ không : ${isValidAge(23)}")   // hàm thông thường có trả về giá trị
 
-    // hàm thông thường có trả về giá trị
-    println("Tuổi có hợp lệ không : ${isValidAge(23)}")
-
-    //Hàm một dòng
-    printMess()
-    println("Số nguyên tố : ${isPrime(10)}")
-
-    //Hamf cục bộ
+    //Hàm cục bộ
     print("Hàm cục bộ: ")
-    var num = listOf(2,6,7,5,9)
+    var num = listOf(2, 6, 7, 5, 9)
     calculateAndPrintResult(num)
 
     //Hàm thành viên
@@ -239,19 +111,27 @@ fun main() {
     //Hàm đệ quy:
     println("Giai thừa của 5 là : ${factorial(5)}")
 
-    //Scope Function
-    scopeFunction()
-
     //Hàm sự dụng Varargs
     println(sum(5, 2, 3, 4, 5, 1, 6))
 
     //Hàm với generic
     var list2 = listOf(1, 2, 3, 4, 5)
-    printList(list2)
     var list3 = listOf("Tài", "Bình", "Duy")
+    printList(list2)
     printList(list3)
 
-    //anonymous function
+    //function Initializer Blocks
+    var person = Person1("Tài", 23)
+    println(person.greeting)
+    try {
+        var person1 = Person1("Bình", -5)
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+
+    }
+
+    //Hàm đặc biệt:
+    // anonymous function
     println(greet1("Tài"))
 
     //Higher-order function
@@ -268,13 +148,40 @@ fun main() {
     var div = operator(5, 6) { x, y -> x / y }
     println("Thương là : $div")
 
-    //function Initializer Blocks
-    var person = Person1("Tài", 23)
-    println(person.greeting)
-    try {
-        var person1 = Person1("Bình", -5)
-    } catch (e: IllegalArgumentException) {
-        println(e.message)
+    //Hàm một dòng
+    printMess()
+    println("Số nguyên tố : ${isPrime(10)}")
 
-    }
+    //Kiểm tra lỗi & Validation
+    println(getIndices(5))
+    //   println(getIndices(-1)) ->lỗi
+    val user1 = com.example.task1.task1.User("Alice", "admin")
+    processUserRole(user1)
+    println(checkInt(5))
+
+    // DEFAULT PARAMETER & NAMED ARGUMENT
+    greet()
+    greet("Tài")
+    greet("Nam", 22)
+    createUser("Tài", 23, "Nghệ An")
+    createUser(hometown = "Ninh Bình", name = "Bình", age = 22)
+
+    //Extension Function
+    var name: String = "dặng Bá Tài"
+    println("In chuỗi đảo ngược : ${name.reverseString()}")
+    println("Số phần tử: ${name.lengthString()}")
+    println("In hoa chữ cái đầu tiên : ${name.capitalizeFirst()}")
+    var list1 = mutableListOf(3, 6)
+    list1.swap(0, 1)
+    println(list1)
+
+    var connection = Connection(Host("google.com"), 80)
+    connection.connect()
+
+    //Scope Function
+    demoLet()
+    demoApply()
+    demoRun()
+    demoWith()
+    demoAlso()
 }
