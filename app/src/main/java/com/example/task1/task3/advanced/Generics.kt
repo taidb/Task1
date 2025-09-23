@@ -1,4 +1,4 @@
-package com.example.task1.task3
+package com.example.task1.task3.advanced
 
 //Generics thông thường
 class Box<T : Number>(private var a: T, private var b: T) {

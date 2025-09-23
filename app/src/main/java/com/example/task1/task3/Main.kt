@@ -1,9 +1,16 @@
 package com.example.task1.task3
 
+import com.example.task1.task3.advanced.Box
+import com.example.task1.task3.advanced.Cards
+import com.example.task1.task3.advanced.DAYS
+import com.example.task1.task3.advanced.NetworkResult
+import com.example.task1.task3.advanced.Weather
+import com.example.task1.task3.coroutines.doWorld
+import com.example.task1.task3.coroutines.task1
+import com.example.task1.task3.coroutines.task2
+import com.example.task1.task3.higherorder.measureTime
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
 
@@ -83,41 +90,8 @@ suspend fun main() {
     println(box2.getValue())
 
 
-    //suspend function
-    runBlocking {
-        var time = measureTime {
-            val result1 = task1()
-            val result2 = task2()
-            println("Result 1: $result1")
-            println("Result 2: $result2")
-            println("Giá trị tổng: ${result1 + result2}")
-
-        }
-        println("Thời gian thực thi: $time ms")
-
-        doWorld()
-        println("Done")
-
-        //Muốn cả 2 thực hiện dồng thời sự dụng : async
-        val time2 = measureTimeMillis {
-            val one = async { task1() }
-            val two = async { task2() }
-            println("The answer is ${one.await() + two.await()}")
-        }
-        println("Completed in $time2 ms")
-
-        //Lazily started async : chỉ khởi động coroutine khi kết quả của nó được yêu cầu bởi await
-        val time3 = measureTimeMillis {
-            val one = async(start = CoroutineStart.LAZY) { task1() }
-            val two = async(start = CoroutineStart.LAZY) { task2() }
-            one.start()
-            two.start()
-            println("The answer is ${one.await() + two.await()}")
-        }
-        println("Completed in $time3 ms")
-
     }
-}
+
 
 
 

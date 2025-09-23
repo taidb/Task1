@@ -1,4 +1,4 @@
-package com.example.task1.task3
+package com.example.task1.task3.advanced
 
 //Hàm enum thông thươnờng
 enum class DAYS {

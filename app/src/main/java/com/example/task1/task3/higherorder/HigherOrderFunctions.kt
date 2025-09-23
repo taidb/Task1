@@ -1,6 +1,6 @@
-package com.example.task1.task3
+package com.example.task1.task3.higherorder
 
-//Higher-order Funtion:  hàm có thể nhận 1 hàm khác làm tham số
+//Higher-order Funtion:  hàm có thể nhận 1 hàm khác làm tham số hoặc trả về 1 hàm
 fun <T, X> Collection<T>.fold(
     initial: X,
     combine: (acc: X, nextElement: T) -> X
@@ -30,6 +30,7 @@ fun getOperation(operation: String): (Int, Int) -> (Int) {
         else -> throw IllegalArgumentException("Invalid operation")
     }
 }
+
 
 //sử dụng hàm tham chiếu:
 fun add(a: Int, b: Int) = a + b
@@ -104,11 +105,11 @@ fun main() {
 
 
 //Nếu tham số lambda không dđược sử dụng có thể đặt dấu gạch dưới thay thế cho tên cuar tham số đó
-    var map = mapOf(1 to "one", 2 to "two")
+    val map = mapOf(1 to "one", 2 to "two")
     map.forEach { (_, value) -> println("$value") }
 
     // Extension function với lambda
-    var extrendString = extendString("abc", 123)
+    val extrendString = extendString("abc", 123)
     println(extrendString)
 
     // Sử dụng transform extension
