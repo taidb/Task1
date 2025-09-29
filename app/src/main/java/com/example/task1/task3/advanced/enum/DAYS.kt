@@ -9,6 +9,7 @@ enum class DAYS {
     THURSDAY,
     FRIDAY,
     SATURDAY;
+
     companion object {
         fun isWeekend(day: DAYS): Boolean {
             return day == SATURDAY || day == SUNDAY

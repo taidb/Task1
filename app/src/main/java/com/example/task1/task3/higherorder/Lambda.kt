@@ -35,15 +35,8 @@ fun String.transforms(transform: (String) -> String): String {
     return transform(this)
 }
 
-//inline Function : khi muốn tối ưu hóa hieeur năng cho các hàm được gọi nhiều lần và có kích nhỏ tránh chi phí gọi hàm
-inline fun measureTime(block: () -> Unit): Long {
-    val start = System.currentTimeMillis()
-    block()
-    return System.currentTimeMillis() - start
-}
 
-
-//StringBuilder là class dùng để tạo và xử lý chuỗi (string) có thể thay đổi được (mutable).
+//lambda with receiver
 val buildMess: StringBuilder.() -> Unit = {
     append("Hello")
     append(" ")
@@ -58,6 +51,15 @@ val person = Person("Nguyễn Văn A", "Hà Nội").apply {
     name = "Đặng Bá Tài"
     address = "Nghệ An"
 }
+
+//inline Function : khi muốn tối ưu hóa hieeur năng cho các hàm được gọi nhiều lần và có kích nhỏ tránh chi phí gọi hàm
+inline fun measureTime(block: () -> Unit): Long {
+    val start = System.currentTimeMillis()
+    block()
+    return System.currentTimeMillis() - start
+}
+
+
 
 fun main() {
     greet()

@@ -69,7 +69,6 @@ fun main(){
     }
     p.printInfo()
 
-    // Gọi DSL HTML
     val html = Html().apply {
         body {
             p("Xin chào Kotlin DSL!")
@@ -78,10 +77,8 @@ fun main(){
     }
     println(html.render())
 
-    // Gọi scope function + extension function
     person.printInfo()
 
-    // Test reverse trực tiếp
     println("Kotlin DSL".reverse())
 
 }
